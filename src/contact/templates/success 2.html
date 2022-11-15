@@ -1,0 +1,31 @@
+{% extends "base_r2.html" %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block title %}{{ block.super }}Contact email sended{% endblock %}
+
+{% block navbar-left %}
+{% include "_navbar.html" %}
+{% endblock %}
+
+{% block splash %}
+<div class="jumbotron jumbotron-fluid jumbotron-contact">
+	<div class="container">
+		<h1 class="display-5 pb-0"><br/></h1>
+		<p class="lead text-light"><br/><br/></p>
+	</div>
+</div>
+{% endblock splash %}
+
+{% block list_of_items %}
+<div class="container form-box">
+  <div class="text-center">
+    Success!
+    <div class="form-message">
+      <p>
+        {% trans "Thank you for your message." %}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock list_of_items %}
