@@ -12,14 +12,16 @@ EXPOSE 8000
 # Set the working directory in the container
 WORKDIR /app
 
+# Installing GDAL
+RUN apt-get update
+RUN apt-get install -y libgdal-dev
+RUN pip3 install GDAL==3.2.2.1
+
 # Copy the dependencies file to the working directory
 COPY requirements.txt requirements.txt
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
-RUN apt-get install -y libgdal-dev
-
-RUN pip3 install GDAL==3.2.2.1
 # Copy the content of the local src directory to the working directory
 COPY . .
 
