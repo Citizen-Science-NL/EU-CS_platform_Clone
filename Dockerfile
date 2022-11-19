@@ -14,8 +14,13 @@ WORKDIR /app
 
 # Installing GDAL
 RUN apt-get update
-RUN apt-get install -y libgdal-dev
-RUN pip3 install GDAL==3.2.2.1
+RUN apt-get install -y software-properties-common && apt-get update
+RUN apt-get install -y python3.7-dev
+RUN  add-apt-repository ppa:ubuntugis/ppa &&  apt-get update
+RUN apt-get install -y gdal-bin libgdal-dev
+ARG CPLUS_INCLUDE_PATH=/usr/include/gdal
+ARG C_INCLUDE_PATH=/usr/include/gdal
+RUN pip install GDAL
 
 # Copy the dependencies file to the working directory
 COPY requirements.txt requirements.txt
