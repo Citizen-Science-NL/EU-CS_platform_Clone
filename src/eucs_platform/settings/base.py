@@ -261,7 +261,8 @@ LANGUAGE_CODES = [
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+#Set to False -> To mute error databse connection isn't set to UTC
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
