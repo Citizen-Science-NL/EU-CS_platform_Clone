@@ -34,7 +34,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: 🐳 Create a Docker Container for Backend
-        run: docker build -t CSNL:latest .
+        run: docker build -t csnl:latest .
       - name: 📬 Upload Backend image to AWS container register
         run: |
           service_name=${{ env.AWS_LIGHTSAIL_SERVICE_NAME }}
@@ -42,7 +42,7 @@ jobs:
             --region ${{ env.AWS_REGION }} \
             --service-name ${service_name} \
             --label CSNL \
-            --image CSNL:latest
+            --image csnl:latest
       - name: 🚀 Deploying the containers to the Amazon datacenter
         run: |
           aws lightsail create-container-service-deployment --service-name citizen-science-nl \
