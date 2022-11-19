@@ -174,12 +174,12 @@ WSGI_APPLICATION = "eucs_platform.wsgi.application"
 
 DATABASES = {
         'default': {
-            # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            #'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'ENGINE': 'django.contrib.gis.db.backends.postgis',
             'NAME': env("DATABASE_NAME"),
             'USER': env("DATABASE_USER"),
             'PASSWORD': env("DATABASE_PASSWORD"),
-            'HOST': 'localhost',
+            'HOST': '3.122.212.171', #This is the IP related to the URL of the AWS Lightsail Database
             'PORT': '5432',
         }
     }
