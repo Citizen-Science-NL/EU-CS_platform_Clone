@@ -17,14 +17,9 @@ COPY requirements.txt requirements.txt
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
-# Install GDAL dependencies
-RUN apt-get install -y libgdal-dev g++ --no-install-recommends && \
-    apt-get clean -y
+RUN apt-get install -y libgdal-dev
 
-# Update C env vars so compiler can find gdal
-ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
-ENV C_INCLUDE_PATH=/usr/include/gdal
-
+RUN pip3 install GDAL==3.2.2.1
 # Copy the content of the local src directory to the working directory
 COPY . .
 
