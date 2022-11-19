@@ -1,6 +1,6 @@
 
 {"citizen-science-nl": {
-  "image": ":csnl.csnl.latest",
+  "image": ":citizen-science-nl.csnl.latest",
   "ports": {"8000": "HTTP"}
 }
 }
