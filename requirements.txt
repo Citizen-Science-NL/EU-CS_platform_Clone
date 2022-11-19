@@ -39,4 +39,3 @@ collection==0.1.6
 psycopg2-binary
 django-image-cropping 
 six
-pycopy-collections.abc
