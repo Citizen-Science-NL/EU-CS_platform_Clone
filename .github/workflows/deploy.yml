@@ -34,7 +34,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Getting the env variables for the app
-        run: aws s3 cp s3://franklyappsecret/Env_Settings.cfg .
+        run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
       - name: 🐳 Create a Docker Container for Backend
         run: docker build -t csnl:latest .
       - name: 📬 Upload Backend image to AWS container register
