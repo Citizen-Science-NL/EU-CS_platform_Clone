@@ -45,7 +45,7 @@ jobs:
             --image csnl:latest
       - name: 🚀 Deploying the containers to the Amazon datacenter
         run: |
-          aws lightsail create-container-service-deployment --service-name citizen-science-nl \
+          aws lightsail create-container-service-deployment --service-name ${{ env.AWS_LIGHTSAIL_SERVICE_NAME }} \
             --containers file://Infrastructure/deploymentconfig.json \
             --public-endpoint file://Infrastructure/publicendpoint.json
       - name: =========== All done. Cleaning up ♻️  ===========
