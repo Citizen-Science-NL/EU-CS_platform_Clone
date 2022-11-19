@@ -1,5 +1,5 @@
 # Set base image (host OS)
-FROM python:3.10-buster
+FROM python:3.9-buster
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
