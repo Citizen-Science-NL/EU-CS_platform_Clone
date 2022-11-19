@@ -1,5 +1,5 @@
 {
-  "containerName": "django",
+  "containerName": "citizen-science-nl",
   "containerPort": 8000,
   "healthCheck": {
     "healthyThreshold": 2,
