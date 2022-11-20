@@ -2,9 +2,5 @@
 {"citizen-science-nl-django": {
   "image": ":citizen-science-nl.csnl.latest",
   "ports": {"8000": "HTTP"}
-},
-"citizen-science-nl-nginx": {
-  "image": "nginx/nginx:latest",
-  "ports": {"80": "HTTP"}
 }
 }
