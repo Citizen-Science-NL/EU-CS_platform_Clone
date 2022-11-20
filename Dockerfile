@@ -24,6 +24,7 @@ COPY . .
 
 # Set the working directory in the container
 WORKDIR /src
+RUN python3 manage.py collectstatic
 
 # Specify the command to run on container start
 
