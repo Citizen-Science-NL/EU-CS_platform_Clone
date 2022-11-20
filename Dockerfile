@@ -26,5 +26,5 @@ COPY . .
 WORKDIR /src
 
 # Specify the command to run on container start
-CMD ["python3", "src/manage.py", "runserver", "0.0.0.0:8000"]
-#CMD [ "gunicorn", "eucs_platform.wsgi" ]
+#CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD [ "gunicorn", "eucs_platform.wsgi" ]
