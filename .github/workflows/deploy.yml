@@ -8,6 +8,7 @@ env:
   AWS_LIGHTSAIL_SERVICE_NAME: citizen-science-nl 
 jobs:    
   buildnginx:
+    name: 🌎 nginx webserver container...
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting code from Github
@@ -43,6 +44,7 @@ jobs:
             --image nginx:latest
 
   builddjango:
+      name: 🤠 Django container...
       runs-on: ubuntu-latest
       steps:
         - name: 🗂  Getting code from Github
