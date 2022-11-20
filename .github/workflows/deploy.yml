@@ -35,7 +35,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Getting the env variables for the app
         run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
-      - name: 🐳 Create a Docker Container for Backend
+      
+      - name: 🐳 Create a Docker Container for NGINX
+        run: docker build -t nginx:latest -f Infrastructure/nginx/Dockerfile .
+      - name: 📬 Upload NGINX image to AWS container register
+        run: |
+          service_name=${{ env.AWS_LIGHTSAIL_SERVICE_NAME }}
+          aws lightsail push-container-image \
+            --region ${{ env.AWS_REGION }} \
+            --service-name ${service_name} \
+            --label nginx \
+            --image nginx:latest
+      - name: 🐳 Create a Docker Container for DJANGO
         run: docker build -t csnl:latest .
       - name: 📬 Upload Backend image to AWS container register
         run: |
