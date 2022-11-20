@@ -1,6 +1,6 @@
 {
-  "containerName": "citizen-science-nl",
-  "containerPort": 8000,
+  "containerName": "citizen-science-nl-nginx",
+  "containerPort": 80,
   "healthCheck": {
     "healthyThreshold": 2,
     "unhealthyThreshold": 10,
