@@ -17,7 +17,7 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.BCryptPasswordHasher",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://citizen-science-nl.vdotvo9a4e2a6.eu-central-1.cs.amazonlightsail.com"]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
