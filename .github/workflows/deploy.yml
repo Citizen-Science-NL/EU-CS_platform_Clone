@@ -32,9 +32,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - name: Getting the env variables for the app
-        run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
-      
       - name: 🐳 Create a Docker Container for NGINX
         run: docker build -t nginx:latest -f Infrastructure/nginx/Dockerfile .
       - name: 📬 Upload NGINX image to AWS container register
@@ -111,8 +108,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      - name: Getting the env variables for the app
-        run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
+      - name: 🚀 Launching the Containers
         run: |
           aws lightsail create-container-service-deployment --service-name ${{ env.AWS_LIGHTSAIL_SERVICE_NAME }} \
           --containers file://Infrastructure/deploymentconfig.json \
