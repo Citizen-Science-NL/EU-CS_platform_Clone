@@ -42,6 +42,8 @@ jobs:
             --service-name ${service_name} \
             --label nginx \
             --image nginx:latest
+      - name: =========== All done. Cleaning up ♻️  ===========
+        run: ls
 
   builddjango:
       name: 🤠 Django container...
@@ -80,6 +82,8 @@ jobs:
               --service-name ${service_name} \
               --label csnl \
               --image csnl:latest
+        - name: =========== All done. Cleaning up ♻️  ===========
+          run: ls
 
 
   deployimages:
@@ -87,6 +91,8 @@ jobs:
     needs: [builddjango, buildnginx]
     runs-on: ubuntu-latest
     steps:
+      - name: 🗂  Getting config files from Github
+        uses: actions/checkout@v2
       - name: 🏢 Install Amazon Client
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
