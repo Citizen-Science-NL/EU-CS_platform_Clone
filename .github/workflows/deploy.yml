@@ -1,4 +1,4 @@
-name: 🚀 Commit and  Deploy to Test Env
+name: 🏗 Build and deploy containers to AWS
 # Only trigger, when the build workflow succeeded
 on:
   push:
