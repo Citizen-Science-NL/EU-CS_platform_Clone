@@ -84,7 +84,7 @@ jobs:
 
   deployimages:
     name: 🚀 Deploying the containers to the Amazon datacenter
-    needs: [builddjango, buildnginx-Scan]
+    needs: [builddjango, buildnginx]
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting all the code written from Github
