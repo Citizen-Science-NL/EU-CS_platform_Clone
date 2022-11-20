@@ -8,10 +8,10 @@ env:
   AWS_LIGHTSAIL_SERVICE_NAME: citizen-science-nl 
 jobs:    
   buildnginx:
-    name: 🌎 Creating nginx webserver...
+    name: 🌎 nginx webserver container...
     runs-on: ubuntu-latest
     steps:
-      - name: 🗂  Getting all the code written from Github
+      - name: 🗂  Getting code from Github
         uses: actions/checkout@v2
       - name: ⚙️  Updating to the latest versions
         run: |
@@ -27,7 +27,7 @@ jobs:
           sudo mv "lightsailctl" "/usr/local/bin/lightsailctl"
           sudo chmod +x /usr/local/bin/lightsailctl
       - name: 🤐 Log in to AWS Lightsail with Secrets
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: ${{ env.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -44,10 +44,10 @@ jobs:
             --image nginx:latest
 
   builddjango:
-      name: 🤠 Creating Django...
+      name: 🤠 Django container...
       runs-on: ubuntu-latest
       steps:
-        - name: 🗂  Getting all the code written from Github
+        - name: 🗂  Getting code from Github
           uses: actions/checkout@v2
         - name: ⚙️  Updating to the latest versions
           run: |
@@ -87,12 +87,6 @@ jobs:
     needs: [builddjango, buildnginx]
     runs-on: ubuntu-latest
     steps:
-      - name: 🗂  Getting all the code written from Github
-        uses: actions/checkout@v2
-      - name: ⚙️  Updating to the latest versions
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq unzip
       - name: 🏢 Install Amazon Client
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -103,7 +97,7 @@ jobs:
           sudo mv "lightsailctl" "/usr/local/bin/lightsailctl"
           sudo chmod +x /usr/local/bin/lightsailctl
       - name: 🤐 Log in to AWS Lightsail with Secrets
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: ${{ env.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
