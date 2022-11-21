@@ -7,8 +7,25 @@ env:
   AWS_REGION: eu-central-1
   AWS_LIGHTSAIL_SERVICE_NAME: citizen-science-nl 
 jobs:    
+  lint:
+    name: Python Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Run flake8
+        uses: julianwachholz/flake8-action@v2
+        with:
+          checkName: "Python Lint"
+          path: path/to/files
+          plugins: flake8-spellcheck
+          config: path/to/flake8.ini
+
   buildnginx:
     name: 🌎 nginx webserver container...
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting code from Github
@@ -47,6 +64,7 @@ jobs:
 
   builddjango:
       name: 🤠 Django container...
+      needs: [lint]
       runs-on: ubuntu-latest
       steps:
         - name: 🗂  Getting code from Github
