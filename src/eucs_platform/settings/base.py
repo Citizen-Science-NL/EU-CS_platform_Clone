@@ -179,7 +179,8 @@ DATABASES = {
             'NAME': env("DATABASE_NAME"),
             'USER': env("DATABASE_USER"),
             'PASSWORD': env("DATABASE_PASSWORD"),
-            'HOST': '3.122.212.171', #This is the IP related to the URL of the AWS Lightsail Database
+            #'HOST': '3.122.212.171', #This is the IP related to the URL of the AWS Lightsail Database
+            'HOST': 'ls-bf931db0297c827aa313a7b5e8195c05af891c5f.c9mc39co9uhb.eu-central-1.rds.amazonaws.com',
             'PORT': '5432',
         }
     }
