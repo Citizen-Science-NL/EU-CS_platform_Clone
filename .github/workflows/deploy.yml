@@ -19,9 +19,7 @@ jobs:
         uses: sunnysid3up/python-linter@master
         with:
           source: "src"
-          mypy-options: "--ignore-missing-imports --show-error-codes"
           pylint-options: "--strict=low"
-          isort-options: "-w 100"
           django: true
   security:
     name: 🕵🏼‍♀️ Check vulnerabilities
