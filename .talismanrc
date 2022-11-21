@@ -1,4 +1,18 @@
 fileignoreconfig:
 - filename: .github/workflows/deploy.yml
-  checksum: ed8ecab569e679be372e78b5de8fa4619594ebec88f5b62fff245a1c2f1cf439
+  checksum: a5cbae3dd460196b51bc12d20166e026cb4eeeb2379515ce5e8a5381d345f50e
 version: ""
+
+scopeconfig:
+  - scope: yml
+
+custom_severities:
+- detector: Base64Content
+  severity: medium
+- detector: HexContent
+  severity: medium
+
+allowed_patterns:
+- keyword
+- aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+- aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}   
