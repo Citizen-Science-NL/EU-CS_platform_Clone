@@ -12,12 +12,20 @@ jobs:
   python-black:
     name: 🎗Linter (Codestyle)
     runs-on: ubuntu-latest
+    paths:
+      - "**.py"
     steps:
-      - uses: actions/checkout@v3
-      - name: Python Black
-        uses: cytopia/docker-black@0.8
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
-          path: 'src/'
+          python-version: "3.9"
+      - name: Run flake8
+        uses: julianwachholz/flake8-action@v2
+        with:
+          checkName: "Python Lint"
+          path: path/to/files
+          plugins: flake8-spellcheck
+          config: path/to/flake8.ini
   security:
     name: 🕵🏼‍♀️ Check vulnerabilities
     runs-on: ubuntu-latest
@@ -28,8 +36,8 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   dependency-review:
-    name: 🚦 Review used dependancies
-    runs-on: ubuntu-latest
+    name: 🚦 Review dependancies
+    runs-on: self-hosted
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v3

@@ -40,3 +40,4 @@ django-image-cropping
 six
 python-dateutil
 whoosh
+setuptools==65.5.1 
