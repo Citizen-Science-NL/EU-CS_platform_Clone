@@ -3,6 +3,8 @@ name: 🏗 Build and deploy containers to AWS
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - "**.py"
 permissions:
   contents: read
 env:
@@ -12,8 +14,6 @@ jobs:
   python-black:
     name: 🎗Linter (Codestyle)
     runs-on: ubuntu-latest
-    paths:
-      - "**.py"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
