@@ -19,7 +19,7 @@ jobs:
         uses: sunnysid3up/python-linter@master
         with:
           source: "src"
-          pylint-options: "--strict=low" 
+          strict: "low" 
   security:
     name: 🚦 Check vulnerabilities
     runs-on: ubuntu-latest
