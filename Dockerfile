@@ -24,7 +24,6 @@ COPY . .
 
 # Set the working directory in the container
 WORKDIR /src
-RUN python3 manage.py collectstatic
 RUN python3 manage.py loaddata projects/fixtures/topics.json
 RUN python3 manage.py loaddata projects/fixtures/status.json
 RUN python3 manage.py loaddata projects/fixtures/participationtasks.json
