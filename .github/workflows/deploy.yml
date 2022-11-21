@@ -12,7 +12,8 @@ env:
 jobs:    
   python-black:
     name: 🎗Linter (Codestyle)
-     steps:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2  
       - name: Python Linter
         uses: sunnysid3up/python-linter@master
