@@ -22,7 +22,7 @@ jobs:
           pylint-options: "--strict=low"
           django: true
   security:
-    name: 🕵🏼‍♀️ Check vulnerabilities
+    name: 🚦 Check vulnerabilities
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -30,18 +30,19 @@ jobs:
         uses: snyk/actions/python-3.8@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-  dependency-review:
-    name: 🚦 Review dependancies
-    runs-on: ubuntu-latest
+  ScanSensitiveData:
+    name: 🕵🏼‍♀️ Scanning for sensitive data in code
+    runs-on: ubuntu-18.04
     steps:
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v3
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Detect secrets with Talisman in incoming commits
+      uses: carhartl/talisman-secrets-scan-action@v1.2.1
 
   buildnginx:
     name: 🌎 nginx webserver container...
-    needs: [python-black, security, dependency-review]
+    needs: [python-black, security, ScanSensitiveData]
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting code from Github
@@ -80,7 +81,7 @@ jobs:
 
   builddjango:
       name: 🤠 Django container...
-      needs: [python-black, security, dependency-review]
+      needs: [python-black, security, ScanSensitiveData]
       runs-on: ubuntu-latest
       steps:
         - name: 🗂  Getting code from Github
