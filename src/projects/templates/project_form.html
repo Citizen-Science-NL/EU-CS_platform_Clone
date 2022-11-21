@@ -108,9 +108,10 @@
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-11">
+ <!--  Commenting these lines out as they break the page
                                 <img class="img-fluid img-zoom" 
                                 id="imageResult1" 
-                                src="{% thumbnail project.image1|default:'void_600.png' 600x400 %}">
+                                src="{% thumbnail project.image1|default:'void_600.png' 600x400 %}">-->
                                 {{ form.image1|as_crispy_field }}
                                 {{ form.x1|as_crispy_field }}
                                 {{ form.y1|as_crispy_field }}
@@ -119,10 +120,10 @@
                                 {{ form.withImage1|as_crispy_field }}
                                 {{ form.image_credit1|as_crispy_field }}
                                 <div class="mb-5"></div>
-
-                                <img class="img-fluid img-zoom" 
+ <!--  Commenting these lines out as they break the page
+                            <img class="img-fluid img-zoom" 
                                      id="imageResult2" 
-                                     src="{% thumbnail project.image2|default:'void_600.png' 600x400 %}">
+                                     src="{% thumbnail project.image2|default:'void_600.png' 600x400 %}">-->
                                 {{ form.image2|as_crispy_field }}
                                 {{ form.x2|as_crispy_field }}
                                 {{ form.y2|as_crispy_field }}
@@ -131,10 +132,10 @@
                                 {{ form.withImage2|as_crispy_field }}
                                 {{ form.image_credit2|as_crispy_field }}
                                 <div class="mb-5"></div>
-
+ <!--  Commenting these lines out as they break the page
                                 <img class="img-fluid mt-3" 
                                      id="imageResult3" 
-                                     src="{% thumbnail project.image3|default:'void_1100.png' 1100x400 %}" alt="Image not upload">
+                                     src="{% thumbnail project.image3|default:'void_1100.png' 1100x400 %}" alt="Image not upload">-->
                                 {{ form.withImage3|as_crispy_field }}
                                 {{ form.image3|as_crispy_field }}
                                 {{ form.x3|as_crispy_field }}
