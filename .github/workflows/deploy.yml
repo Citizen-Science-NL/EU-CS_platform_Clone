@@ -7,25 +7,35 @@ env:
   AWS_REGION: eu-central-1
   AWS_LIGHTSAIL_SERVICE_NAME: citizen-science-nl 
 jobs:    
-  lint:
-    name: Python Lint
+  python-black:
+    name: 🎗Linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - name: Python Black
+        uses: cytopia/docker-black@0.8
         with:
-          python-version: "3.9"
-      - name: Run flake8
-        uses: julianwachholz/flake8-action@v2
-        with:
-          checkName: "Python Lint"
-          path: path/to/files
-          plugins: flake8-spellcheck
-          config: path/to/flake8.ini
+          path: 'src/'
+  security:
+    name: 🕵🏼‍♀️ Check vulnerabilities
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v3
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v3
 
   buildnginx:
     name: 🌎 nginx webserver container...
-    needs: [lint]
+    needs: [python-black, security, dependency-review]
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting code from Github
@@ -64,7 +74,7 @@ jobs:
 
   builddjango:
       name: 🤠 Django container...
-      needs: [lint]
+      needs: [python-black, security, dependency-review]
       runs-on: ubuntu-latest
       steps:
         - name: 🗂  Getting code from Github
