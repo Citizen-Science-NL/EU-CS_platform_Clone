@@ -17,6 +17,7 @@ custom_severities:
 - detector: HexContent
   severity: medium
 
+  
 allowed_patterns:
 - keyword
 - aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
