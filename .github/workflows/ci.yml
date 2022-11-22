@@ -41,7 +41,9 @@ jobs:
     - name: Getting the env variables for the app
       run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
     - name: Running the actual tests
-      run: python3 src/manage.py test
+      run: |
+        cd src
+        python3 manage.py test
  
   linter: 
     name: 🎗 Linter
