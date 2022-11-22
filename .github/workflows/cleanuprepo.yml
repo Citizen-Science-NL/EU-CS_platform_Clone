@@ -15,7 +15,7 @@ jobs:
           days-before-close: 5
           repo-token: '${{ secrets.PETERVANDOORN_GH_TOKEN }} '
 
-    stale_branches:
+  stale_branches:
     runs-on: ubuntu-latest
     steps:
     - name: Stale Branches
