@@ -8,7 +8,6 @@ fileignoreconfig:
   checksum: 69c748939ff97fb6209f0286a053fcc5470ae8475cc8de06ba7d30db1e2275e7
   ignore_detectors: [filename] 
 
-
 scopeconfig:
   - scope: yml
 
