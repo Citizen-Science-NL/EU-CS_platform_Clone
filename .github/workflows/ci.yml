@@ -15,7 +15,6 @@ env:
 jobs:  
   tests:
     name: 🔬 Running Tests
-    needs: [security, ScanSensitiveData, linter]
     runs-on: ubuntu-latest
     steps:
     - name: 🗂  Getting code from Github
