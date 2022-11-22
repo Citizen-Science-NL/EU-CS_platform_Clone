@@ -10,42 +10,8 @@ env:
   AWS_REGION: eu-central-1
   AWS_LIGHTSAIL_SERVICE_NAME: citizen-science-nl 
 jobs:    
-  linter: 
-    name: 🎗 Linter
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: ricardochaves/python-lint@v1.4.0
-      with:
-        python-root-list: "python_alelo tests"
-        use-pylint: false
-        use-pycodestyle: false
-        use-flake8: false
-        use-black: false
-        use-mypy: false
-        use-isort: false
-  security:
-    name: 🚦 Check vulnerabilities
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.8@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-  ScanSensitiveData:
-    name: 🕵🏼‍♀️ Scanning for sensitive data in code
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Detect secrets with Talisman in incoming commits
-      uses: carhartl/talisman-secrets-scan-action@v1.2.1
-
   buildnginx:
     name: 🌎 nginx webserver container...
-    needs: [security, ScanSensitiveData, linter]
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting code from Github
@@ -84,7 +50,6 @@ jobs:
 
   builddjango:
       name: 🤠 Django container...
-      needs: [security, ScanSensitiveData, linter]
       runs-on: ubuntu-latest
       steps:
         - name: 🗂  Getting code from Github
@@ -126,7 +91,7 @@ jobs:
 
   deployimages:
     name: 🚀 Deploying the containers to the Amazon datacenter
-    needs: [builddjango, buildnginx, security, ScanSensitiveData]
+    needs: [builddjango, buildnginx]
     runs-on: ubuntu-latest
     steps:
       - name: 🗂  Getting config files from Github

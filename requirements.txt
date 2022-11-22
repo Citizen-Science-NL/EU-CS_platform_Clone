@@ -39,5 +39,6 @@ psycopg2-binary
 django-image-cropping 
 six
 python-dateutil
+setuptools==65.5.1
 whoosh
-setuptools==65.5.1 
+
