@@ -40,10 +40,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Getting the env variables for the app
       run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
+    - name: Installing dependancies
+      run: |
+        pip3 install --upgrade pip
+        pip3 install -r requirements.txt
     - name: Running the actual tests
       run: |
         cd src
-        python manage.py test
+        python3manage.py test
  
   linter: 
     name: 🎗 Linter
