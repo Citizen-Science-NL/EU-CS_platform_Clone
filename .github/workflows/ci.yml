@@ -84,6 +84,7 @@ jobs:
     - name: Detect secrets with Talisman in incoming commits
       uses: carhartl/talisman-secrets-scan-action@v1.2.1
   pull-request:
+    needs: [tests,linter, security, ScanSensitiveData]
     name: 🔃 Creating Pull request to merge with Master
     runs-on: ubuntu-latest
     steps:
