@@ -47,7 +47,7 @@ jobs:
     - name: Running the actual tests
       run: |
         cd src
-        python3manage.py test
+        python3 manage.py test
  
   linter: 
     name: 🎗 Linter
