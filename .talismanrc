@@ -1,7 +1,13 @@
 fileignoreconfig:
 - filename: .github/workflows/deploy.yml
   checksum: 510f5859446f117b0878639433997697d07f1fa93bf517fe4122500ab3efdb93
-version: ""
+
+- filename: .github/workflows/ci.yml
+  checksum: 69c748939ff97fb6209f0286a053fcc5470ae8475cc8de06ba7d30db1e2275e7
+- filename: '*.yml'
+  checksum: 69c748939ff97fb6209f0286a053fcc5470ae8475cc8de06ba7d30db1e2275e7
+  ignore_detectors: [filename] 
+
 
 scopeconfig:
   - scope: yml
