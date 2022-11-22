@@ -3,7 +3,7 @@ fileignoreconfig:
   checksum: 510f5859446f117b0878639433997697d07f1fa93bf517fe4122500ab3efdb93
 
 - filename: .github/workflows/ci.yml
-  checksum: 7946eb7145a001c268ec10ad0935c9be8d21499de91cbfb180874082a195723a
+  checksum: c09a9ed58a7db08e00e0594cd28cacbb1f6156d11ec6c69f63449ac280236a9b
 - filename: '*.yml'
   checksum: 69c748939ff97fb6209f0286a053fcc5470ae8475cc8de06ba7d30db1e2275e7
   ignore_detectors: [filename] 
