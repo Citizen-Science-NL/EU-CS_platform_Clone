@@ -74,6 +74,6 @@ jobs:
     - name: Getting the env variables for the app
       run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
     - name: Running the actual tests
-    uses: UKnowWhoIm/django-test-action@v0.6
-    with:
-        settings-dir-path: "testproject"
+      uses: UKnowWhoIm/django-test-action@v0.6
+      with:
+          settings-dir-path: "testproject"
