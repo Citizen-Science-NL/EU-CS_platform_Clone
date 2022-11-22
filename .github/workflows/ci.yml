@@ -42,10 +42,10 @@ jobs:
       run: aws s3 cp s3://env-variables-citizen-science-nl/local.env ./src/eucs_platform/settings
     - name: Installing dependancies
       run: |
-        pip3 install --upgrade pip
-        pip3 install -r requirements.txt
-        apt-get update &&\
-        apt-get install -y binutils libproj-dev gdal-bin
+        sudo pip3 install --upgrade pip
+        sudo pip3 install -r requirements.txt
+        sudo apt-get update &&\
+        sudo apt-get install -y binutils libproj-dev gdal-bin
     - name: Running the actual tests
       run: |
         cd src
@@ -83,3 +83,25 @@ jobs:
         fetch-depth: 0
     - name: Detect secrets with Talisman in incoming commits
       uses: carhartl/talisman-secrets-scan-action@v1.2.1
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ""                                 # If blank, default: triggered branch
+        destination_branch: "master"                      # If blank, default: master
+        pr_title: "Pulling ${{ github.ref }} into master" # Title of pull request
+        pr_body: |                                        # Full markdown support, requires pr_title to be set
+          :crown: *An automated PR*
+
+          _Created by [repo-sync/pull-request](https://github.com/repo-sync/pull-request)_
+        pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
+        pr_reviewer: "wei,worker"                         # Comma-separated list (no spaces)
+        pr_assignee: "wei,worker"                         # Comma-separated list (no spaces)
+        pr_label: "auto-pr"                               # Comma-separated list (no spaces)
+        pr_milestone: "Milestone 1"                       # Milestone name
+        pr_draft: true                                    # Creates pull request as draft
+        pr_allow_empty: true                              # Creates pull request even if there are no changes
+        github_token: ${{ secrets.petervandoorn_gh_token }}      # If blank, default: secrets.GITHUB_TOKEN
