@@ -49,7 +49,7 @@ jobs:
     - name: Running the actual tests
       run: |
         cd src
-        python3 manage.py test
+        python3 manage.py test --noinput
  
   linter: 
     name: 🎗 Linter
