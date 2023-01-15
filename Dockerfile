@@ -10,9 +10,6 @@ ENV PYTHONUNBUFFERED 1
 #EXPOSE 80
 EXPOSE 8000
 
-# Installing GDAL --> this is a dependancy not obtainable through PIP
-RUN apt-get update &&\
-    apt-get install -y binutils libproj-dev gdal-bin
 
 # Copy the dependencies file to the working directory
 COPY requirements.txt requirements.txt
@@ -24,16 +21,7 @@ COPY . .
 
 # Set the working directory in the container
 WORKDIR /src
-RUN python3 manage.py loaddata projects/fixtures/topics.json
-RUN python3 manage.py loaddata projects/fixtures/status.json
-RUN python3 manage.py loaddata projects/fixtures/participationtasks.json
-RUN python3 manage.py loaddata projects/fixtures/geographicextend.json
-RUN python3 manage.py loaddata resources/fixtures/categories.json
-RUN python3 manage.py loaddata resources/fixtures/themes.json
-RUN python3 manage.py loaddata resources/fixtures/audiences.json
-RUN python3 manage.py loaddata organisations/fixtures/organisation_types.json
 
-# Specify the command to run on container start
 
 # This is the "standard" local development server and thus should not be used
 #CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
