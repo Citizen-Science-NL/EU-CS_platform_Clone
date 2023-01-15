@@ -24,8 +24,9 @@ WORKDIR /src
 
 
 # This is the "standard" local development server and thus should not be used
-#CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
 #This starts the production Gunicorn wsgi process on all ports be aware that the wsgi can't serve static files. 
-CMD [ "gunicorn", "-b", "0.0.0.0:8000", "eucs_platform.wsgi" ]
+#CMD [ "gunicorn", "-b", "0.0.0.0:8000", "eucs_platform.wsgi" ]
+
 
 # Check out the infrastructure/nginx folder for further information on the nginx webserver container configuration. 
