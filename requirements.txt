@@ -41,4 +41,5 @@ six
 python-dateutil
 setuptools==65.5.1
 whoosh
+wagtail
 
